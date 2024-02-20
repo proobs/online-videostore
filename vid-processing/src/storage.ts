@@ -27,19 +27,20 @@ export function setupDirectories() {
  * @param processedVidName - name of the file to convert
  * @returns A promise that resolves when the video has been converted
  */
-export function convertVideo(rawVidName: string, processedVidName: string) {
-    // promise to check for error on runtime
-    return new Promise<void>((res, reject) => {
-        ffmpeg(`${localRawVids}/${rawVidName}`)
-            .outputOptions('-vf', `scale=${scale}}`)
-            .on('end', () => {
-                console.log("Processing finished successfully.");
+export function convertVideo(rawVideoName: string, processedVideoName: string) {
+    return new Promise<void>((resolve, reject) => {
+        ffmpeg(`${localRawVids}/${rawVideoName}`)
+            .outputOptions("-vf", "scale=-1:360") // 360p
+            .on("end", function () {
+                console.log("Processing finished successfully");
+                resolve();
             })
-            .on('error', (err) => {
-                console.log(`An error occured: ${err.message}`);
+            .on("error", function (err: any) {
+                console.log("An error occurred: " + err.message);
+                reject(err);
             })
-            .save(`${localProcessedVids}/${processedVidName}`);
-    })
+            .save(`${localProcessedVids}/${processedVideoName}`);
+    });
 }
 
 /**

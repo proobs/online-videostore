@@ -55,6 +55,8 @@ app.post("/process-video", async (req, res) => {
     return res.status(200).send("Sucessfully processed the video");
 })
 
+// app.post("/process-image")
+
 app.listen(port, () => {
     console.log(`Video processing listening @ http://localhost:${port}`);
 });
