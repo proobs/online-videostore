@@ -1,6 +1,7 @@
 # Video-Processing
 
-This project provides a video processing service that leverages Docker for deployment. For environments where Docker is not available, the following dependencies must be installed to ensure the service operates correctly:
+This project provides a video processing service that leverages Docker for deployment via google cloud. Uses Pub/sub + buckets alongside Google Cloud Run.
+For environments where Docker is not available, the following dependencies must be installed to ensure the service operates correctly:
 
 ## Dependencies Without Docker
 
